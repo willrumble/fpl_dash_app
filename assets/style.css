@@ -1,0 +1,24 @@
+/* style.css content */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f3f3f3;
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    background-color: #0275d8;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+}
+
+.dropdown {
+    width: 50%;
+    margin: 20px auto;
+}
+
+.graph {
+    width: 80%;
+    margin: 40px auto;
+}
