@@ -16,3 +16,7 @@ def process_data(raw_data):
     # Process the data as required
     return data
 
+def get_processed_data(url):
+    raw_data = fetch_data(url)
+    processed_data = process_data(raw_data)
+    return processed_data
