@@ -5,6 +5,8 @@ import plotly.graph_objs as go
 from dash import html, dcc
 from dash.exceptions import PreventUpdate
 import pandas as pd
+from data_handler import get_best_performers_by_points, get_best_performers_by_value, get_largest_price_changes, get_largest_ownership_changes
+
 
 @app.callback(
     Output('tabs-content', 'children'),
@@ -143,7 +145,7 @@ def update_table(selected_columns, value_range, GW_range, selected_positions, so
     filtered_df = filtered_df.sort_values(by='GW', ascending=False)
 
     # Columns to take the most recent value
-    recent_value_cols = ['name', 'team', 'value']
+    recent_value_cols = ['name', 'team', 'value', 'position']
     recent_values = filtered_df.groupby('name')[recent_value_cols].first()
 
     # Other columns to sum
@@ -162,3 +164,82 @@ def update_table(selected_columns, value_range, GW_range, selected_positions, so
     data = final_df.to_dict('records')
     return data
 
+@app.callback(
+    Output('table-gk-points', 'data'),
+    [Input('overview-weeks-input', 'value')]
+)
+def update_gk_table(num_weeks):
+    if num_weeks is None:
+        num_weeks = 1
+    best_performers = get_best_performers_by_points(df, num_weeks, ['GK'])
+    return best_performers.to_dict('records')
+
+@app.callback(
+    Output('table-def-points', 'data'),
+    [Input('overview-weeks-input', 'value')]
+)
+def update_gk_table(num_weeks):
+    if num_weeks is None:
+        num_weeks = 1
+    best_performers = get_best_performers_by_points(df, num_weeks, ['DEF'])
+    return best_performers.to_dict('records')
+
+@app.callback(
+    Output('table-mid-points', 'data'),
+    [Input('overview-weeks-input', 'value')]
+)
+def update_gk_table(num_weeks):
+    if num_weeks is None:
+        num_weeks = 1
+    best_performers = get_best_performers_by_points(df, num_weeks, ['MID'])
+    return best_performers.to_dict('records')
+
+@app.callback(
+    Output('table-fwd-points', 'data'),
+    [Input('overview-weeks-input', 'value')]
+)
+def update_gk_table(num_weeks):
+    if num_weeks is None:
+        num_weeks = 1
+    best_performers = get_best_performers_by_points(df, num_weeks, ['FWD'])
+    return best_performers.to_dict('records')
+
+@app.callback(
+    Output('table-gk-value', 'data'),
+    [Input('overview-weeks-input', 'value')]
+)
+def update_gk_table(num_weeks):
+    if num_weeks is None:
+        num_weeks = 1
+    best_performers = get_best_performers_by_value(df, num_weeks, ['GK'])
+    return best_performers.to_dict('records')
+
+@app.callback(
+    Output('table-def-value', 'data'),
+    [Input('overview-weeks-input', 'value')]
+)
+def update_gk_table(num_weeks):
+    if num_weeks is None:
+        num_weeks = 1
+    best_performers = get_best_performers_by_value(df, num_weeks, ['DEF'])
+    return best_performers.to_dict('records')
+
+@app.callback(
+    Output('table-mid-value', 'data'),
+    [Input('overview-weeks-input', 'value')]
+)
+def update_gk_table(num_weeks):
+    if num_weeks is None:
+        num_weeks = 1
+    best_performers = get_best_performers_by_value(df, num_weeks, ['MID'])
+    return best_performers.to_dict('records')
+
+@app.callback(
+    Output('table-fwd-value', 'data'),
+    [Input('overview-weeks-input', 'value')]
+)
+def update_gk_table(num_weeks):
+    if num_weeks is None:
+        num_weeks = 1
+    best_performers = get_best_performers_by_value(df, num_weeks, ['FWD'])
+    return best_performers.to_dict('records')

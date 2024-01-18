@@ -65,9 +65,87 @@ def graphs_tab():
 
 def overview_tab():
     return html.Div([
-    # Content for the Overview tab
-    # Placeholder for now, you can add overview components here later
+        html.Div([
+            dcc.Input(id='overview-weeks-input', type='number', placeholder='Number of Weeks', value=4),
+            html.Button('Update', id='overview-update-button'),
+        ], style={'margin-bottom': '20px'}),
+
+        html.Div([
+            html.Div([
+            html.Label("Best Performers by Points (GK)", style={'font-weight': 'bold'}),
+            dash_table.DataTable(
+            id='table-gk-points',
+            columns=[{'name': col, 'id': col} for col in ['name', 'total_points', 'value']],
+            style_table={'height': '300px', 'overflowY': 'auto'},
+            style_cell={'textAlign': 'left', 'fontSize': '10px'},
+            style_header={'backgroundColor': 'white', 'fontWeight': 'bold'}
+        )], className='table-container'),
+        html.Div([
+        html.Label("Best Performers by Points (DEF)", style={'font-weight': 'bold'}),
+            dash_table.DataTable(
+            id='table-def-points',
+            columns=[{'name': col, 'id': col} for col in ['name', 'total_points', 'value']],
+            style_table={'height': '300px', 'overflowY': 'auto'},
+            style_cell={'textAlign': 'left', 'fontSize': '10px'},
+            style_header={'backgroundColor': 'white', 'fontWeight': 'bold'}
+        )], className='table-container'),
+        html.Div([
+        html.Label("Best Performers by Points (MID)", style={'font-weight': 'bold'}),
+            dash_table.DataTable(
+            id='table-mid-points',
+            columns=[{'name': col, 'id': col} for col in ['name', 'total_points', 'value']],
+            style_table={'height': '300px', 'overflowY': 'auto'},
+            style_cell={'textAlign': 'left', 'fontSize': '10px'},
+            style_header={'backgroundColor': 'white', 'fontWeight': 'bold'}
+        )], className='table-container'),
+        html.Div([
+        html.Label("Best Performers by Points (FWD)", style={'font-weight': 'bold'}),
+            dash_table.DataTable(
+            id='table-fwd-points',
+            columns=[{'name': col, 'id': col} for col in ['name', 'total_points', 'value']],
+            style_table={'height': '300px', 'overflowY': 'auto'},
+            style_cell={'textAlign': 'left', 'fontSize': '10px'},
+            style_header={'backgroundColor': 'white', 'fontWeight': 'bold'}
+        )], className='table-container'),
+        html.Div([
+        html.Label("Best Performers by Point Value (GK)", style={'font-weight': 'bold'}),
+            dash_table.DataTable(
+            id='table-gk-value',
+            columns=[{'name': col, 'id': col} for col in ['name', 'total_points', 'value']],
+            style_table={'height': '300px', 'overflowY': 'auto'},
+            style_cell={'textAlign': 'left', 'fontSize': '10px'},
+            style_header={'backgroundColor': 'white', 'fontWeight': 'bold'}
+        )], className='table-container'),
+        html.Div([
+        html.Label("Best Performers by Point Value (DEF)", style={'font-weight': 'bold'}),
+            dash_table.DataTable(
+            id='table-def-value',
+            columns=[{'name': col, 'id': col} for col in ['name', 'total_points', 'value']],
+            style_table={'height': '300px', 'overflowY': 'auto'},
+            style_cell={'textAlign': 'left', 'fontSize': '10px'},
+            style_header={'backgroundColor': 'white', 'fontWeight': 'bold'}
+        )], className='table-container'),
+        html.Div([
+        html.Label("Best Performers by Point Value (MID)", style={'font-weight': 'bold'}),
+            dash_table.DataTable(
+            id='table-mid-value',
+            columns=[{'name': col, 'id': col} for col in ['name', 'total_points', 'value']],
+            style_table={'height': '300px', 'overflowY': 'auto'},
+            style_cell={'textAlign': 'left', 'fontSize': '10px'},
+            style_header={'backgroundColor': 'white', 'fontWeight': 'bold'}
+        )], className='table-container'),
+        html.Div([
+        html.Label("Best Performers by Point Value (FWD)", style={'font-weight': 'bold'}),
+            dash_table.DataTable(
+            id='table-fwd-value',
+            columns=[{'name': col, 'id': col} for col in ['name', 'total_points', 'value']],
+            style_table={'height': '300px', 'overflowY': 'auto'},
+            style_cell={'textAlign': 'left', 'fontSize': '10px'},
+            style_header={'backgroundColor': 'white', 'fontWeight': 'bold'}
+        )], className='table-container'),
+        ], style={'display': 'grid', 'grid-template-columns': 'repeat(auto-fill, minmax(300px, 1fr))', 'grid-gap': '5px'}),
     ])
+
 
 def tables_tab():
     return html.Div([
